@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Categoria } from "../../models/Categoria";
 import { CategoriasService } from "../../services/categorias.service";
 import { ModalDialogService } from "../../services/modal-dialog.service";
 
@@ -86,15 +87,10 @@ export class CategoriasComponent implements OnInit {
   // Buscar segun los filtros, establecidos en FormReg
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.articulosService
-      .get(
-        this.FormFiltro.value.Nombre,
-        this.FormFiltro.value.Activo,
-        this.Pagina
-      )
+    this.categoriasService
+      .get()
       .subscribe((res: any) => {
-        this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
+        this.Lista = res;
       });
   }
 
